@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skincare E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="announcement" style="background-color: #f58c8c; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; position: relative;">
+
+        <!-- Announcement text -->
+<p style="margin: 0 auto; font-size: 20px; color: rgb(195, 17, 46); flex: 1; text-align: center; font-family: 'Brush Script MT', cursive;">
+  FREE SHIPPING OVER $50 • Buy 2 @ Get 2 FREE • Sale Ends Soon!
+</p>
+
+      
+        <!-- Cart Icon -->
+        <div id="cart-icon" style="position: relative; margin-left: auto; cursor: pointer;">
+          <img src="cart.png.jpg" alt="Cart" style="height: 40px; width: 40px;">
+          <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
+            0
+          </span>
+        </div>
+      
+        <!-- Coin Icon -->
+        <div id="coin-icon" style="position: relative; margin-left: 20px; cursor: pointer;">
+          <img src="coin.jpg" alt="Coins" style="height: 40px; width: 40px;">
+          <span id="coin-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
+            0
+          </span>
+        </div>
+      
+        <!-- Cart Popup -->
+        <div id="cart-popup" style="display: none; position: absolute; right: 120px; top: 50px; width: 280px; max-height: 350px; overflow-y: auto; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); z-index: 100; font-family: sans-serif;">
+        </div>
+      
+        <!-- Coin Popup -->
+        <div id="coin-popup" style="display: none; position: absolute; right: 20px; top: 50px; width: 280px; max-height: 350px; overflow-y: auto; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); z-index: 100; font-family: sans-serif;">
+        </div>
+      </div>
+      
+
+    <!-- Link the upgraded cart.js -->
+    <script src="cart.js"></script>
+    <script src="coin.js"></script>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 30px 100px;">
+      <div style="display: flex; align-items: center; gap: 30px;">
+        <img src="home_img.png.jpg" alt="Logo" style="height: 90px; width: 100px; object-fit: cover;">
+        <h1 style="font-size: 60px; font-family: 'Segoe Script'; color: #f58c8c; margin: 0;">Glamify</h1>
+      </div>
+
+      <div class="search-bar" style="display: flex; align-items: center; background: white; border-radius: 10px; padding: 5px 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <input type="text" placeholder="Search products..." style="border: none; outline: none; font-size: 16px;">
+        <button style="background-color: #f58c8c; color: white; border: none; padding: 8px 15px; border-radius: 6px; margin-left: 10px;">Search</button>
+      </div>
+    </div>
+
+    <!-- ✅ Product buttons are now updated with data-img attributes -->
+    
+      </div>
+      
+          
+        <header>
+        <nav>
+            <ul>
+                <li><button onclick="location.href='index.html'">Home</button></li>
+                <li><button onclick="location.href='products.html'">Products</button></li>
+                <li><button onclick="location.href='tube_return.html'">Tube Return Process</button></li>
+                <li><button onclick="location.href='trial_products.html'">Trial Products</button></li>
+                <li><button onclick="location.href='your-coins.html'">Your Coins</button></li>
+                <li><button onclick="location.href='about.html'">About</button></li>
+                <li><button onclick="location.href='contact.html'">Contact</button></li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <section id="home">
+        <div class="hero-content">
+            <h2 style="font-family:cursive; color: rgb(141, 94, 129); font-size:xx-large;">Welcome to Glow Skin</h2>
+            <p>Your one-stop shop for the best skincare products.</p>
+            <button class="hero-button" onclick="location.href='#products'">Shop Now</button>
+        </div>
+    </section>
+    
+    <section id="products">
+        <h2>BESTSELLERS</h2>
+        <nav>
+            <ul>
+                <li><a href="#sunscreen" class="tab-link">Sunscreens</a></li>
+                <li><a href="#moisturizer" class="tab-link">Moisturizers</a></li>
+                <li><a href="#serum" class="tab-link">Serums</a></li>
+                <li><a href="#cosmetics" class="tab-link">Cosmetics</a></li>
+            </ul>
+        </nav>
+        <!-- Sunscreens -->
+<div id="sunscreen" class="products-container">
+    <div class="product">
+      <img src="suncreen1.png" alt="Hyaluronic Acid sunscreen">
+      <h3>Hyaluronic Acid sunscreen</h3>
+      <p>hydration and nourishment</p>
+      <p class="price"><span class="old-price">$39.00</span> $29.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">5170 reviews</p>
+      <button class="add-to-cart" data-name="Hyaluronic Acid sunscreen" data-price="29.00" data-img="suncreen1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+  
+    <div class="product">
+      <img src="suncreen2.png" alt="Strawberry extract sunscreen">
+      <h3>Strawberry extract sunscreen</h3>
+      <p>dullness and glow</p>
+      <p class="price"><span class="old-price">$39.00</span> $29.00</p>
+      <div class="stars">★★★★</div>
+      <p class="reviews">4830 reviews</p>
+      <button class="add-to-cart" data-name="Strawberry extract sunscreen" data-price="29.00" data-img="suncreen2.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+  
+    <div class="product">
+      <img src="suncreen3.png" alt="Vitamin C sunscreen">
+      <h3>Vitamin C sunscreen</h3>
+      <p>darkspots and pigmentation</p>
+      <p class="price"><span class="old-price">$39.00</span> $29.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">8501 reviews</p>
+      <button class="add-to-cart" data-name="Vitamin C sunscreen" data-price="29.00" data-img="suncreen3.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+  </div>
+  
+  <!-- Moisturizers -->
+  <div id="moisturizer" class="products-container" style="display: none;">
+    <div class="product">
+      <img src="mois1.png" alt="Berry Glow Moisturizer">
+      <h3>Berry Glow Moisturizer</h3>
+      <p>Nourishes and enhances glow</p>
+      <p class="price">$29.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">5170 reviews</p>
+      <button class="add-to-cart" data-name="Berry Glow Moisturizer" data-price="29.00" data-img="mois1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="moist2.png" alt="Hyaluronic Water Gel Moisturizer">
+      <h3>Hyaluronic Water Gel Moisturizer</h3>
+      <p>Deeply hydrates and plumps skin</p>
+      <p class="price">$29.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">5170 reviews</p>
+      <button class="add-to-cart" data-name="Hyaluronic Water Gel Moisturizer" data-price="29.00" data-img="moist2.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="moist3.png" alt="Tea Hydration Moisturizer">
+      <h3>Tea Hydration Moisturizer</h3>
+      <p>Soothes and hydrates sensitive skin</p>
+      <p class="price">$29.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">5170 reviews</p>
+      <button class="add-to-cart" data-name="Tea Hydration Moisturizer" data-price="29.00" data-img="moist3.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="moist4.png" alt="Vitamin C Moisturizer">
+      <h3>Vitamin C Moisturizer</h3>
+      <p>Brightens skin and reduces dullness</p>
+      <p class="price">$29.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">5170 reviews</p>
+      <button class="add-to-cart" data-name="Vitamin C Moisturizer" data-price="29.00" data-img="moist4.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+  </div>
+  
+  <!-- Serums -->
+  <div id="serum" class="products-container" style="display: none;">
+    <div class="product">
+      <img src="serum3.png" alt="Radiance Boost Vitamin C Serum">
+      <h3>Radiance Boost Vitamin C Serum</h3>
+      <p>Brightens and evens skin tone</p>
+      <p class="price">$35.00</p>
+      <div class="stars">★★★★☆</div>
+      <p class="reviews">4120 reviews</p>
+      <button class="add-to-cart" data-name="Radiance Boost Vitamin C Serum" data-price="35.00" data-img="serum3.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="serum4.png" alt="HydraGlow Hyaluronic Serum">
+      <h3>HydraGlow Hyaluronic Serum</h3>
+      <p>Deep hydration for plump skin</p>
+      <p class="price">$40.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">5280 reviews</p>
+      <button class="add-to-cart" data-name="HydraGlow Hyaluronic Serum" data-price="40.00" data-img="serum4.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="serum2.png" alt="Green Tea Repair Serum">
+      <h3>Green Tea Repair Serum</h3>
+      <p>Calms irritation and repairs skin</p>
+      <p class="price">$32.00</p>
+      <div class="stars">★★★★☆</div>
+      <p class="reviews">3890 reviews</p>
+      <button class="add-to-cart" data-name="Green Tea Repair Serum" data-price="32.00" data-img="serum2.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+  </div>
+  
+  <!-- Cosmetics -->
+  <div id="cosmetics" class="products-container" style="display: none;">
+    <div class="product">
+      <img src="lipstick.jpg" alt="Velvet Matte Lipstick">
+      <h3>Velvet Matte Lipstick</h3>
+      <p>Rich color with a smooth matte finish</p>
+      <p class="price">$18.00</p>
+      <div class="stars">★★★★☆</div>
+      <p class="reviews">3450 reviews</p>
+      <button class="add-to-cart" data-name="Velvet Matte Lipstick" data-price="18.00" data-img="lipstick1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="highligher.jpg" alt="Glow Beam Highlighter">
+      <h3>Glow Beam Highlighter</h3>
+      <p>Gives a radiant, dewy glow</p>
+      <p class="price">$22.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">4125 reviews</p>
+      <button class="add-to-cart" data-name="Glow Beam Highlighter" data-price="22.00" data-img="highlighter1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="mascara2.jpg" alt="Lash Lift Mascara">
+      <h3>Lash Lift Mascara</h3>
+      <p>Lengthens and volumizes lashes</p>
+      <p class="price">$20.00</p>
+      <div class="stars">★★★★☆</div>
+      <p class="reviews">3890 reviews</p>
+      <button class="add-to-cart" data-name="Lash Lift Mascara" data-price="20.00" data-img="mascara1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="blush.jpg" alt="Rosy Cheeks Blush">
+      <h3>Rosy Cheeks Blush</h3>
+      <p>Soft and blendable for a natural flush</p>
+      <p class="price">$19.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">4550 reviews</p>
+      <button class="add-to-cart" data-name="Rosy Cheeks Blush" data-price="19.00" data-img="blush1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="spray.jpg" alt="Stay Fresh Setting Spray">
+      <h3>Stay Fresh Setting Spray</h3>
+      <p>Locks in makeup for all-day wear</p>
+      <p class="price">$24.00</p>
+      <div class="stars">★★★★☆</div>
+      <p class="reviews">3980 reviews</p>
+      <button class="add-to-cart" data-name="Stay Fresh Setting Spray" data-price="24.00" data-img="spray1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+    <div class="product">
+      <img src="eyeliner.jpg" alt="Precision Liquid Eyeliner">
+      <h3>Precision Liquid Eyeliner</h3>
+      <p>Smudge-proof and ultra-black</p>
+      <p class="price">$16.00</p>
+      <div class="stars">★★★★★</div>
+      <p class="reviews">4780 reviews</p>
+      <button class="add-to-cart" data-name="Precision Liquid Eyeliner" data-price="16.00" data-img="eyeliner1.png">Add to Cart</button>
+      <button>View more</button>
+    </div>
+  </div>
+
+        </div>
+
+    </section>
+    <div style="text-align: center;">
+        <img src="glowmatters.png" alt="Radiance Boost Vitamin C Serum" style="width: 100%; max-width: 900px; height: auto;">
+    </div>
+
+    <script src="script.js"></script> <!-- Link JavaScript -->
+    <!-- ✅ Added to Cart Popup -->
+<div id="added-popup" style="
+display: none;
+position: fixed;
+bottom: 30px;
+right: 30px;
+background-color: #f58c8c;
+color: white;
+padding: 10px 18px;
+border-radius: 8px;
+font-weight: bold;
+box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+font-family: sans-serif;
+z-index: 999;
+transition: opacity 0.4s ease;
+">
+✅ Added to cart!
+</div>
+
+</body>
+</html>

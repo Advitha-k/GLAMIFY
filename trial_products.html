@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #fffafc;
+          margin: 0;
+          padding: 0;
+        }
+        .trial-header {
+          text-align: center;
+          padding: 30px 0 10px;
+        }
+        .trial-header h1 {
+          color: #f58c8c;
+          font-size: 36px;
+          margin: 0;
+        }
+        .trial-header p {
+          font-size: 16px;
+          color: #555;
+        }
+        .products-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 25px;
+          padding: 40px;
+          max-width: 1200px;
+          margin: auto;
+        }
+        .trial-product {
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 0 12px rgba(0,0,0,0.1);
+          padding: 20px;
+          text-align: center;
+          transition: transform 0.2s ease-in-out;
+        }
+        .trial-product:hover {
+          transform: scale(1.02);
+        }
+        .trial-product img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+        .trial-product h3 {
+          font-size: 18px;
+          margin: 15px 0 10px;
+          color: #333;
+        }
+        .trial-product p {
+          margin: 0 0 10px;
+          font-size: 14px;
+          color: #777;
+        }
+        .btn-group {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        .btn-trial {
+          background-color: #f58c8c;
+          border: none;
+          padding: 8px 12px;
+          border-radius: 6px;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .btn-trial:hover {
+          background-color: #e97878;
+        }
+      </style>
+</head>
+<body>
+    <div class="announcement" style="background-color: #f58c8c; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; position: relative;">
+
+        <!-- Announcement text -->
+<p style="margin: 0 auto; font-size: 20px; color: rgb(195, 17, 46); flex: 1; text-align: center; font-family: 'Brush Script MT', cursive;">
+    FREE SHIPPING OVER $50 • Buy 2 @ Get 2 FREE • Sale Ends Soon!
+  </p>
+      
+        <!-- Cart Icon -->
+        <div id="cart-icon" style="position: relative; margin-left: auto; cursor: pointer;">
+          <img src="cart.png.jpg" alt="Cart" style="height: 40px; width: 40px;">
+          <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
+            0
+          </span>
+        </div>
+      
+        <!-- Coin Icon -->
+        <div id="coin-icon" style="position: relative; margin-left: 20px; cursor: pointer;">
+          <img src="coin.jpg" alt="Coins" style="height: 40px; width: 40px;">
+          <span id="coin-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
+            0
+          </span>
+        </div>
+      
+        <!-- Cart Popup -->
+        <div id="cart-popup" style="display: none; position: absolute; right: 120px; top: 50px; width: 280px; max-height: 350px; overflow-y: auto; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); z-index: 100; font-family: sans-serif;"></div>
+      
+        <!-- Coin Popup -->
+        <div id="coin-popup" style="display: none; position: absolute; right: 20px; top: 50px; width: 280px; max-height: 350px; overflow-y: auto; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); z-index: 100; font-family: sans-serif;"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="cart.js"></script>
+    <script src="coin.js"></script>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 30px 100px;">
+        <div style="display: flex; align-items: center; gap: 30px;">
+            <img src="home_img.png.jpg" alt="Logo" style="height: 90px; width: 100px; object-fit: cover;">
+            <h1 style="font-size: 60px; font-family: 'Segoe Script'; color: #f58c8c; margin: 0;">Glamify</h1>
+        </div>
+
+        <div class="search-bar" style="display: flex; align-items: center; background: white; border-radius: 10px; padding: 5px 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <input type="text" placeholder="Search products..." style="border: none; outline: none; font-size: 16px;">
+            <button style="background-color: #f58c8c; color: white; border: none; padding: 8px 15px; border-radius: 6px; margin-left: 10px;">Search</button>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><button onclick="location.href='index.html'">Home</button></li>
+                <li><button onclick="location.href='products.html'">Products</button></li>
+                <li><button onclick="location.href='tube_return.html'">Tube Return Process</button></li>
+                <li><button onclick="location.href='trial_products.html'">Trial Products</button></li>
+                <li><button onclick="location.href='your-coins.html'">Your Coins</button></li>
+                <li><button onclick="location.href='about.html'">About</button></li>
+                <li><button onclick="location.href='contact.html'">Contact</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="trial-header">
+        <h1>Try Before You Buy ✨</h1>
+        <p>Select trial-sized products and redeem them using your coins!</p>
+      </div>
+    
+      <div class="products-container">
+        <div class="trial-product">
+          <img src="moist-trial.png" alt="Moisturizer">
+          <h3>Tea Tree Moisturizer (Trial)</h3>
+          <p>Sample size - 10ml</p>
+          <div class="btn-group">
+            <button class="btn-trial">Buy with 10 Coins</button>
+          </div>
+        </div>
+    
+        <div class="trial-product">
+          <img src="serum-trial.png" alt="Serum">
+          <h3>Vitamin C Serum (Trial)</h3>
+          <p>Sample size - 5ml</p>
+          <div class="btn-group">
+            <button class="btn-trial">Buy with 15 Coins</button>
+          </div>
+        </div>
+    
+        <div class="trial-product">
+          <img src="cleanser-trial.png" alt="Cleanser">
+          <h3>Green Tea Cleanser (Trial)</h3>
+          <p>Sample size - 15ml</p>
+          <div class="btn-group">
+            <button class="btn-trial">Buy with 8 Coins</button>
+          </div>
+        </div>
+    
+        <div class="trial-product">
+          <img src="spf-trial.png" alt="Sunscreen">
+          <h3>Daily Sunscreen Gel (Trial)</h3>
+          <p>Sample size - 10ml</p>
+          <div class="btn-group">
+            <button class="btn-trial">Buy with 12 Coins</button>
+          </div>
+        </div>
+    
+        <div class="trial-product">
+          <img src="mask-trial.png" alt="Face Mask">
+          <h3>Charcoal Face Mask (Trial)</h3>
+          <p>Sample size - 1 sheet</p>
+          <div class="btn-group">
+            <button class="btn-trial">Buy with 6 Coins</button>
+          </div>
+        </div>
+        <div class="trial-product">
+            <img src="mask-trial.png" alt="Face Mask">
+            <h3>Charcoal Face Mask (Trial)</h3>
+            <p>Sample size - 1 sheet</p>
+            <div class="btn-group">
+              <button class="btn-trial">Buy with 6 Coins</button>
+            </div>
+          </div>
+          <div class="trial-product">
+            <img src="mask-trial.png" alt="Face Mask">
+            <h3>Charcoal Face Mask (Trial)</h3>
+            <p>Sample size - 1 sheet</p>
+            <div class="btn-group">
+              <button class="btn-trial">Buy with 6 Coins</button>
+            </div>
+          </div>
+          <div class="trial-product">
+            <img src="mask-trial.png" alt="Face Mask">
+            <h3>Charcoal Face Mask (Trial)</h3>
+            <p>Sample size - 1 sheet</p>
+            <div class="btn-group">
+              <button class="btn-trial">Buy with 6 Coins</button>
+            </div>
+          </div>
+          <div class="trial-product">
+            <img src="mask-trial.png" alt="Face Mask">
+            <h3>Charcoal Face Mask (Trial)</h3>
+            <p>Sample size - 1 sheet</p>
+            <div class="btn-group">
+              <button class="btn-trial">Buy with 6 Coins</button>
+            </div>
+          </div>
+          <div class="trial-product">
+            <img src="mask-trial.png" alt="Face Mask">
+            <h3>Charcoal Face Mask (Trial)</h3>
+            <p>Sample size - 1 sheet</p>
+            <div class="btn-group">
+              <button class="btn-trial">Buy with 6 Coins</button>
+            </div>
+          </div>
+    
+        <div class="trial-product">
+          <img src="toner-trial.png" alt="Toner">
+          <h3>Hydrating Toner (Trial)</h3>
+          <p>Sample size - 15ml</p>
+          <div class="btn-group">
+            <button class="btn-trial">Buy with 10 Coins</button>
+          </div>
+        </div>
+      </div>
+      
+  </section>
+
+  <script>
+    function addTrialToCart(name, price, coinCost, img) {
+      const coinsList = JSON.parse(localStorage.getItem("coinsList")) || [];
+      const totalCoins = coinsList.reduce((sum, item) => sum + item.coins, 0);
+
+      if (totalCoins >= coinCost) {
+        if (confirm(`Use ${coinCost} coins instead of paying $${price}?`)) {
+          const remainingCoins = totalCoins - coinCost;
+          const newCoinsList = [{ product: `Used for: ${name}`, coins: -coinCost, date: new Date().toLocaleString() }, ...coinsList];
+          localStorage.setItem("coinsList", JSON.stringify(newCoinsList));
+          alert("Trial product added using coins!");
+        } else {
+          alert("Trial product added to cart for $" + price);
+        }
+      } else {
+        alert("Not enough coins! Trial product added to cart for $" + price);
+      }
+
+      // Optional: add to cart logic or display update
+    }
+  </script>
+  </body>
+    
+</html>

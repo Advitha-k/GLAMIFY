@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="announcement" style="background-color: #f58c8c; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; position: relative;">
+
+        <!-- Announcement text -->
+<p style="margin: 0 auto; font-size: 20px; color: rgb(195, 17, 46); flex: 1; text-align: center; font-family: 'Brush Script MT', cursive;">
+  FREE SHIPPING OVER $50 • Buy 2 @ Get 2 FREE • Sale Ends Soon!
+</p>
+        <!-- Cart Icon -->
+        <div id="cart-icon" style="position: relative; margin-left: auto; cursor: pointer;">
+          <img src="cart.png.jpg" alt="Cart" style="height: 40px; width: 40px;">
+          <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
+            0
+          </span>
+        </div>
+      
+        <!-- Coin Icon -->
+        <div id="coin-icon" style="position: relative; margin-left: 20px; cursor: pointer;">
+          <img src="coin.jpg" alt="Coins" style="height: 40px; width: 40px;">
+          <span id="coin-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
+            0
+          </span>
+        </div>
+      
+        <!-- Cart Popup -->
+        <div id="cart-popup" style="display: none; position: absolute; right: 120px; top: 50px; width: 280px; max-height: 350px; overflow-y: auto; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); z-index: 100; font-family: sans-serif;"></div>
+      
+        <!-- Coin Popup -->
+        <div id="coin-popup" style="display: none; position: absolute; right: 20px; top: 50px; width: 280px; max-height: 350px; overflow-y: auto; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); z-index: 100; font-family: sans-serif;"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="cart.js"></script>
+    <script src="coin.js"></script>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 30px 100px;">
+        <div style="display: flex; align-items: center; gap: 30px;">
+            <img src="home_img.png.jpg" alt="Logo" style="height: 90px; width: 100px; object-fit: cover;">
+            <h1 style="font-size: 60px; font-family: 'Segoe Script'; color: #f58c8c; margin: 0;">Glamify</h1>
+        </div>
+
+        <div class="search-bar" style="display: flex; align-items: center; background: white; border-radius: 10px; padding: 5px 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <input type="text" placeholder="Search products..." style="border: none; outline: none; font-size: 16px;">
+            <button style="background-color: #f58c8c; color: white; border: none; padding: 8px 15px; border-radius: 6px; margin-left: 10px;">Search</button>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><button onclick="location.href='index.html'">Home</button></li>
+                <li><button onclick="location.href='products.html'">Products</button></li>
+                <li><button onclick="location.href='tube_return.html'">Tube Return Process</button></li>
+                <li><button onclick="location.href='trial_products.html'">Trial Products</button></li>
+                <li><button onclick="location.href='your-coins.html'">Your Coins</button></li>
+                <li><button onclick="location.href='about.html'">About</button></li>
+                <li><button onclick="location.href='contact.html'">Contact</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Tube Return Form -->
+    <div class="container">
+        <h2>Return Used Tubes & Earn Coins!</h2>
+        <p>Upload your used product tubes to earn discount coins.<br>✨ 1 tube = 10 coins ✨</p>
+
+        <form id="return-form">
+            <label for="product-name">Which product are you returning?</label>
+            <input type="text" id="product-name" name="product-name" placeholder="E.g., Vitamin C Moisturizer" required />
+
+            <label for="photo">Upload picture of finished tube/bottle:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required />
+
+            <label for="quantity">Number of finished tubes:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required />
+
+            <div id="coin-output"></div>
+
+            <button type="submit">Submit & Earn Coins</button>
+        </form>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <!-- Coin Submission Script -->
+    <script>
+        const form = document.getElementById("return-form");
+        const coinOutput = document.getElementById("coin-output");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const product = document.getElementById("product-name").value;
+            const quantity = parseInt(document.getElementById("quantity").value);
+            const coinsEarned = quantity * 10;
+
+            const newEntry = {
+                product,
+                quantity,
+                coins: coinsEarned,
+                date: new Date().toLocaleString()
+            };
+
+            let coinsList = JSON.parse(localStorage.getItem("coinsList")) || [];
+            coinsList.push(newEntry);
+            localStorage.setItem("coinsList", JSON.stringify(coinsList));
+
+            coinOutput.textContent = `🎉 You earned ${coinsEarned} coins! They will be applied to your next purchase.`;
+            coinOutput.style.display = "block";
+
+            if (typeof updateCoinPopup === "function") updateCoinPopup();
+
+            form.reset();
+        });
+    </script>
+</body>
+<style>
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+      color: #f58c8c;
+      text-align: center;
+    }
+
+    .container p {
+      text-align: center;
+      font-size: 15px;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .container label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .container input[type="text"],
+    .container input[type="number"],
+    .container input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    #coin-output {
+      font-weight: bold;
+      color: #4CAF50;
+      display: none;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .container button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #f58c8c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .container button[type="submit"]:hover {
+      background-color: #ec6e6e;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #f58c8c;
+    }
+  </style>
+</html>

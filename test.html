@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart Test</title>
+</head>
+<body>
+
+<!-- Cart Banner -->
+<div class="announcement" style="background-color: #f58c8c; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; position: relative;">
+  <p style="margin: 0 auto; font-weight: bold; font-size: 16px; color: black; flex: 1; text-align: center;">
+    FREE SHIPPING AVAILABLE ON ORDERS OVER $50!
+  </p>
+
+  <!-- Cart Icon -->
+  <div id="cart-icon" style="position: relative; margin-left: auto; cursor: pointer;">
+    <img src="cart.png.jpg" alt="Cart" style="height: 24px; width: 24px;">
+    <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
+      0
+    </span>
+  </div>
+
+  <!-- Cart Popup -->
+  <div id="cart-popup" style="display: none; position: absolute; right: 50px; top: 50px; width: 260px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); z-index: 100; font-family: sans-serif;">
+  </div>
+</div>
+
+<!-- Sample Product -->
+<div class="product" style="padding: 30px;">
+  <h3>Vitamin C Sunscreen</h3>
+  <p>$29.00</p>
+  <button class="add-to-cart" data-name="Vitamin C Sunscreen" data-price="29.00">Add to Cart</button>
+</div>
+
+<!-- Link JavaScript -->
+<script src="cart.js"></script>
+
+</body>
+</html>
