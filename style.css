@@ -143,13 +143,13 @@ button {
   background-color: #ff9999;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 button:hover {
-  background-color: #ff3333;
+  background-color: #f58c8c;
 }
 
 footer {
@@ -184,3 +184,37 @@ h1 {
   animation: glamifyAnimation 3s infinite ease-in-out;
 }
 
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  padding: 20px;
+  transition: left 0.3s ease;
+}
+.sidebar.open {
+  left: 0;
+}
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 20px;
+}
+.sidebar h3 {
+  margin-top: 0;
+  color: #f58c8c;
+}
+.sidebar label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+.sidebar input[type="checkbox"] {
+  margin-right: 5px;
+}
