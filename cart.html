@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart Details | Glamify</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffafc;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      color: #f58c8c;
+    }
+    .cart-container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .item-info {
+      flex: 1;
+      margin-left: 20px;
+    }
+    .item-name {
+      font-weight: bold;
+      font-size: 16px;
+      color: #333;
+    }
+    .item-qty {
+      margin-top: 5px;
+      color: #777;
+    }
+    .item-price {
+      font-weight: bold;
+      color: #f58c8c;
+    }
+    .total-summary {
+      margin-top: 30px;
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    .checkout-btn {
+      background: #f58c8c;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      float: right;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #f58c8c;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-container">
+    <a href="index.html" class="back-btn">&larr; Continue Shopping</a>
+    <h1>Your Cart</h1>
+
+    <div id="cart-items">
+      <!-- Items will be dynamically populated -->
+    </div>
+
+    <div class="total-summary" id="total-summary">
+      Total: $0.00
+    </div>
+
+    <button class="checkout-btn">Proceed to Checkout</button>
+  </div>
+
+  <script>
+    const cartItemsContainer = document.getElementById("cart-items");
+    const totalSummary = document.getElementById("total-summary");
+
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let total = 0;
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = "<p style='text-align:center; color: #999;'>Your cart is empty.</p>";
+    } else {
+      cart.forEach(item => {
+        const itemEl = document.createElement("div");
+        itemEl.className = "cart-item";
+        const itemTotal = (item.price * item.quantity).toFixed(2);
+        total += parseFloat(itemTotal);
+
+        itemEl.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div class="item-info">
+            <div class="item-name">${item.name}</div>
+            <div class="item-qty">Qty: ${item.quantity}</div>
+          </div>
+          <div class="item-price">$${itemTotal}</div>
+        `;
+        cartItemsContainer.appendChild(itemEl);
+      });
+
+      totalSummary.textContent = `Total: $${total.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
