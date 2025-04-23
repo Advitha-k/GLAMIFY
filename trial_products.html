@@ -6,90 +6,131 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-          font-family: 'Segoe UI', sans-serif;
-          background-color: #fffafc;
-          margin: 0;
-          padding: 0;
-        }
-        .trial-header {
-          text-align: center;
-          padding: 30px 0 10px;
-        }
-        .trial-header h1 {
-          color: #f58c8c;
-          font-size: 36px;
-          margin: 0;
-        }
-        .trial-header p {
-          font-size: 16px;
-          color: #555;
-        }
-        .products-container {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 25px;
-          padding: 40px;
-          max-width: 1200px;
-          margin: auto;
-        }
-        .trial-product {
-          background: #fff;
-          border-radius: 12px;
-          box-shadow: 0 0 12px rgba(0,0,0,0.1);
-          padding: 20px;
-          text-align: center;
-          transition: transform 0.2s ease-in-out;
-        }
-        .trial-product:hover {
-          transform: scale(1.02);
-        }
-        .trial-product img {
-          width: 100px;
-          height: 100px;
-          object-fit: cover;
-          border-radius: 10px;
-        }
-        .trial-product h3 {
-          font-size: 18px;
-          margin: 15px 0 10px;
-          color: #333;
-        }
-        .trial-product p {
-          margin: 0 0 10px;
-          font-size: 14px;
-          color: #777;
-        }
-        .btn-group {
-          display: flex;
-          gap: 10px;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-        .btn-trial {
-          background-color: #f58c8c;
-          border: none;
-          padding: 8px 12px;
-          border-radius: 6px;
-          color: white;
-          font-weight: bold;
-          cursor: pointer;
-        }
-        .btn-trial:hover {
-          background-color: #e97878;
-        }
-      </style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #fffafc;
+        margin: 0;
+        padding: 0;
+      }
+      .trial-header {
+        text-align: center;
+        padding: 30px 0 10px;
+      }
+      .trial-header h1 {
+        color: #f58c8c;
+        font-size: 36px;
+        margin: 0;
+      }
+      .trial-header p {
+        font-size: 16px;
+        color: #555;
+      }
+      .products-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+      }
+      .trial-product {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.2s ease-in-out;
+      }
+      .trial-product:hover {
+        transform: scale(1.02);
+      }
+      .trial-product img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .trial-product h3 {
+        font-size: 18px;
+        margin: 15px 0 10px;
+        color: #333;
+      }
+      .trial-product p {
+        margin: 0 0 10px;
+        font-size: 14px;
+        color: #777;
+      }
+      .btn-group {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn-trial {
+        background-color: #f58c8c;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .btn-trial:hover {
+        background-color: #e97878;
+      }
+      #orderModal {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none; justify-content: center; align-items: center;
+        z-index: 9999;
+      }
+      #orderModal .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+      }
+      #orderModal input {
+        width: 90%;
+        margin-bottom: 10px;
+        padding: 8px;
+      }
+  </style>
 </head>
 <body>
+  
+  <button class="menu-toggle" onclick="toggleSidebar()" style="position: absolute; top: 10px; left: 10px; z-index: 1100;">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h3>Filter Options</h3>
+    <label>Price Range</label>
+    <div><input type="radio" name="price" value="under5"> Under $5</div>
+    <div><input type="radio" name="price" value="5-10"> $5 - $10</div>
+    <div><input type="radio" name="price" value="10-15"> $10 - $15</div>
+    <br>
+    <label>Category</label>
+    <div><input type="checkbox"> Moisturizers</div>
+    <div><input type="checkbox"> Serums</div>
+    <div><input type="checkbox"> Sunscreens</div>
+    <br>
+    <button onclick="toggleSidebar()">Close</button>
+  </div>
     <div class="announcement" style="background-color: #f58c8c; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; position: relative;">
 
         <!-- Announcement text -->
 <p style="margin: 0 auto; font-size: 20px; color: rgb(195, 17, 46); flex: 1; text-align: center; font-family: 'Brush Script MT', cursive;">
     FREE SHIPPING OVER $50 • Buy 2 @ Get 2 FREE • Sale Ends Soon!
   </p>
+  <div id="signup-icon" style="position: relative; margin-left: auto; cursor: pointer;" onclick="location.href='signin.html'">
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/007/033/146/small_2x/profile-icon-login-head-icon-vector.jpg" style="height: 40px; width: 40px;">
+    
+  </div>
       
         <!-- Cart Icon -->
-        <div id="cart-icon" style="position: relative; margin-left: auto; cursor: pointer;">
+        <div id="cart-icon" style="position: relative; margin-left: 20px; cursor: pointer;">
           <img src="cart.png.jpg" alt="Cart" style="height: 40px; width: 40px;">
           <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
             0
@@ -114,6 +155,12 @@
     <!-- Scripts -->
     <script src="cart.js"></script>
     <script src="coin.js"></script>
+    <script>
+      function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.style.left = sidebar.style.left === "0px" ? "-300px" : "0px";
+}
+    </script>
 
     <div style="display: flex; align-items: center; justify-content: space-between; padding: 30px 100px;">
         <div style="display: flex; align-items: center; gap: 30px;">
@@ -148,7 +195,7 @@
     
       <div class="products-container">
         <div class="trial-product">
-          <img src="moist-trial.png" alt="Moisturizer">
+          <img src="mois1.png" alt="Moisturizer">
           <h3>Tea Tree Moisturizer (Trial)</h3>
           <p>Sample size - 10ml</p>
           <div class="btn-group">
@@ -157,7 +204,7 @@
         </div>
     
         <div class="trial-product">
-          <img src="serum-trial.png" alt="Serum">
+          <img src="serum1.png" alt="Serum">
           <h3>Vitamin C Serum (Trial)</h3>
           <p>Sample size - 5ml</p>
           <div class="btn-group">
@@ -166,7 +213,7 @@
         </div>
     
         <div class="trial-product">
-          <img src="cleanser-trial.png" alt="Cleanser">
+          <img src="spray.jpg" alt="Cleanser">
           <h3>Green Tea Cleanser (Trial)</h3>
           <p>Sample size - 15ml</p>
           <div class="btn-group">
@@ -175,7 +222,7 @@
         </div>
     
         <div class="trial-product">
-          <img src="spf-trial.png" alt="Sunscreen">
+          <img src="suncreen1.png" alt="Sunscreen">
           <h3>Daily Sunscreen Gel (Trial)</h3>
           <p>Sample size - 10ml</p>
           <div class="btn-group">
@@ -184,7 +231,7 @@
         </div>
     
         <div class="trial-product">
-          <img src="mask-trial.png" alt="Face Mask">
+          <img src="moist2.png" alt="Face Mask">
           <h3>Charcoal Face Mask (Trial)</h3>
           <p>Sample size - 1 sheet</p>
           <div class="btn-group">
@@ -192,8 +239,8 @@
           </div>
         </div>
         <div class="trial-product">
-            <img src="mask-trial.png" alt="Face Mask">
-            <h3>Charcoal Face Mask (Trial)</h3>
+            <img src="suncreen2.png" alt="Face Mask">
+            <h3>Strawberry sunscreen (Trial)</h3>
             <p>Sample size - 1 sheet</p>
             <div class="btn-group">
               <button class="btn-trial">Buy with 6 Coins</button>
@@ -243,28 +290,76 @@
       </div>
       
   </section>
+  <div id="orderModal">
+    <div class="modal-content">
+      <h3>Enter Delivery Details</h3>
+      <input type="text" id="userName" placeholder="Your Name" required>
+      <input type="text" id="userAddress" placeholder="Your Address" required>
+      <input type="text" id="userPincode" placeholder="Pincode" required>
+      <button onclick="submitOrder()">Confirm Order</button>
+    </div>
+  </div>
 
   <script>
-    function addTrialToCart(name, price, coinCost, img) {
+    let selectedProduct = null;
+
+    document.querySelectorAll('.btn-trial').forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        const name = btn.closest('.trial-product').querySelector('h3').innerText;
+        const coinText = btn.innerText.match(/\d+/);
+        const coinCost = parseInt(coinText ? coinText[0] : 0);
+        selectedProduct = { name, coinCost };
+        document.getElementById('orderModal').style.display = 'flex';
+      });
+    });
+
+    function submitOrder() {
+      const name = document.getElementById("userName").value.trim();
+      const address = document.getElementById("userAddress").value.trim();
+      const pincode = document.getElementById("userPincode").value.trim();
+
+      if (!name || !address || !pincode) {
+        alert("Please fill all details");
+        return;
+      }
+
       const coinsList = JSON.parse(localStorage.getItem("coinsList")) || [];
       const totalCoins = coinsList.reduce((sum, item) => sum + item.coins, 0);
 
-      if (totalCoins >= coinCost) {
-        if (confirm(`Use ${coinCost} coins instead of paying $${price}?`)) {
-          const remainingCoins = totalCoins - coinCost;
-          const newCoinsList = [{ product: `Used for: ${name}`, coins: -coinCost, date: new Date().toLocaleString() }, ...coinsList];
-          localStorage.setItem("coinsList", JSON.stringify(newCoinsList));
-          alert("Trial product added using coins!");
-        } else {
-          alert("Trial product added to cart for $" + price);
-        }
-      } else {
-        alert("Not enough coins! Trial product added to cart for $" + price);
+      if (totalCoins < selectedProduct.coinCost) {
+        alert("Not enough coins!");
+        document.getElementById('orderModal').style.display = 'none';
+        return;
       }
 
-      // Optional: add to cart logic or display update
+      // Deduct coins and log order
+      coinsList.push({
+        product: selectedProduct.name,
+        coins: -selectedProduct.coinCost,
+        date: new Date().toLocaleString(),
+        address: `${name}, ${address}, ${pincode}`
+      });
+      localStorage.setItem("coinsList", JSON.stringify(coinsList));
+
+      alert("Order confirmed and coins deducted!");
+      document.getElementById('orderModal').style.display = 'none';
+      location.reload();
     }
   </script>
+  <div id="sidebar" style="position: fixed; left: -300px; top: 0; width: 250px; height: 100%; background-color: #fffafc; box-shadow: 2px 0 12px rgba(0,0,0,0.2); z-index: 200; padding: 20px; transition: left 0.3s ease;">
+    <h3 style="color: #f58c8c;">Filter Options</h3>
+    <p><strong>Price Range</strong></p>
+    <label><input type="radio" name="price" /> Under $5</label><br>
+    <label><input type="radio" name="price" /> $5 - $10</label><br>
+    <label><input type="radio" name="price" /> $10 - $15</label><br><br>
+  
+    <p><strong>Categories</strong></p>
+    <label><input type="checkbox" /> Moisturizers</label><br>
+    <label><input type="checkbox" /> Serums</label><br>
+    <label><input type="checkbox" /> Sunscreens</label><br><br>
+  
+    <button onclick="toggleSidebar()" style="margin-top: 20px; background-color: #f58c8c; border: none; color: white; padding: 8px 15px; border-radius: 5px;">Close</button>
+  </div>
   </body>
     
 </html>
