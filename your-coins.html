@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Coins | Glamify</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .coin-header {
+      padding: 30px;
+      text-align: center;
+      background-color: #fef0f0;
+      border-bottom: 1px solid #ffdada;
+    }
+    .coin-header h1 {
+      font-size: 32px;
+      color: #f58c8c;
+      margin: 0;
+    }
+    .back-button {
+      margin: 20px auto;
+      display: block;
+      padding: 10px 20px;
+      background-color: #f58c8c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      width: fit-content;
+    }
+    .coin-summary {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    .summary-box {
+      background: #ffecec;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 200px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .summary-box h2 {
+      font-size: 28px;
+      margin: 0;
+      color: #f58c8c;
+    }
+    .summary-box span {
+      font-size: 14px;
+      color: #666;
+    }
+    .coin-history {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .coin-entry {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    .coin-entry:last-child {
+      border-bottom: none;
+    }
+    .coin-entry strong {
+      color: #333;
+    }
+    .coin-entry span {
+      color: #999;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="coin-header">
+    <h1>🎉 Your GLAM Coins Dashboard 🪙</h1>
+    <a href="index.html" class="back-button">← Back to Home</a>
+  </div>
+
+  <div class="coin-summary">
+    <div class="summary-box">
+      <h2 id="earned">0</h2>
+      <span>Earned Coins 🪙</span>
+    </div>
+    <div class="summary-box">
+      <h2 id="spent">0</h2>
+      <span>Spent Coins 🪙</span>
+    </div>
+    <div class="summary-box">
+      <h2 id="balance">0</h2>
+      <span>Available Coins 🪙</span>
+    </div>
+  </div>
+
+  <div class="coin-history" id="coin-history">
+    <!-- Coin transactions will appear here -->
+  </div>
+
+  <script>
+    const historyEl = document.getElementById("coin-history");
+    const earnedEl = document.getElementById("earned");
+    const spentEl = document.getElementById("spent");
+    const balanceEl = document.getElementById("balance");
+  
+    const coinsList = JSON.parse(localStorage.getItem("coinsList")) || [];
+  
+    // Calculate earned, spent, and balance
+    const totalEarned = coinsList
+      .filter(entry => entry.coins > 0)
+      .reduce((sum, entry) => sum + entry.coins, 0);
+  
+    const totalSpent = coinsList
+      .filter(entry => entry.coins < 0)
+      .reduce((sum, entry) => sum + Math.abs(entry.coins), 0);
+  
+    const balance = totalEarned - totalSpent;
+  
+    // Update UI
+    earnedEl.textContent = totalEarned;
+    spentEl.textContent = totalSpent;
+    balanceEl.textContent = balance;
+  
+    // Display coin history
+    if (coinsList.length === 0) {
+      historyEl.innerHTML = '<p style="text-align:center; color: #aaa;">No coin activity yet.</p>';
+    } else {
+      coinsList.slice().reverse().forEach(entry => {
+        const div = document.createElement("div");
+        const coinText = entry.coins > 0
+          ? `+${entry.coins} coins`
+          : `-${Math.abs(entry.coins)} coins`;
+        div.className = "coin-entry";
+        div.innerHTML = `<strong>${entry.product}</strong> - ${coinText}<br><span>${entry.date}</span>`;
+        historyEl.appendChild(div);
+      });
+    }
+  </script>
+  
+</body>
+</html>
