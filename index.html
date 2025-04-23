@@ -8,6 +8,24 @@
     
 </head>
 <body>
+
+  <button class="menu-toggle" onclick="toggleSidebar()" style="position: absolute; top: 10px; left: 10px; z-index: 1100;">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h3>Filter Options</h3>
+    <label>Price Range</label>
+    <div><input type="radio" name="price" value="under5"> Under $5</div>
+    <div><input type="radio" name="price" value="5-10"> $5 - $10</div>
+    <div><input type="radio" name="price" value="10-15"> $10 - $15</div>
+    <br>
+    <label>Category</label>
+    <div><input type="checkbox"> Moisturizers</div>
+    <div><input type="checkbox"> Serums</div>
+    <div><input type="checkbox"> Sunscreens</div>
+    <br>
+    <button onclick="toggleSidebar()">Close</button>
+  </div>
+
     <div class="announcement" style="background-color: #f58c8c; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; position: relative;">
 
         <!-- Announcement text -->
@@ -16,8 +34,13 @@
 </p>
 
       
+        
+        <div id="signup-icon" style="position: relative; margin-left: auto; cursor: pointer;" onclick="location.href='signin.html'">
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/007/033/146/small_2x/profile-icon-login-head-icon-vector.jpg" style="height: 40px; width: 40px;">
+          
+        </div>
         <!-- Cart Icon -->
-        <div id="cart-icon" style="position: relative; margin-left: auto; cursor: pointer;">
+        <div id="cart-icon" style="position: relative; margin-left: 20px; cursor: pointer;">
           <img src="cart.png.jpg" alt="Cart" style="height: 40px; width: 40px;">
           <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: white; color: #f58c8c; padding: 2px 6px; border-radius: 50%; font-size: 12px;">
             0
@@ -45,6 +68,12 @@
     <!-- Link the upgraded cart.js -->
     <script src="cart.js"></script>
     <script src="coin.js"></script>
+    <script>
+      function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.style.left = sidebar.style.left === "0px" ? "-300px" : "0px";
+}
+    </script>
 
     <div style="display: flex; align-items: center; justify-content: space-between; padding: 30px 100px;">
       <div style="display: flex; align-items: center; gap: 30px;">
@@ -299,6 +328,20 @@ z-index: 999;
 transition: opacity 0.4s ease;
 ">
 ✅ Added to cart!
+</div>
+<div id="sidebar" style="position: fixed; left: -300px; top: 0; width: 250px; height: 100%; background-color: #fffafc; box-shadow: 2px 0 12px rgba(0,0,0,0.2); z-index: 200; padding: 20px; transition: left 0.3s ease;">
+  <h3 style="color: #f58c8c;">Filter Options</h3>
+  <p><strong>Price Range</strong></p>
+  <label><input type="radio" name="price" /> Under $5</label><br>
+  <label><input type="radio" name="price" /> $5 - $10</label><br>
+  <label><input type="radio" name="price" /> $10 - $15</label><br><br>
+
+  <p><strong>Categories</strong></p>
+  <label><input type="checkbox" /> Moisturizers</label><br>
+  <label><input type="checkbox" /> Serums</label><br>
+  <label><input type="checkbox" /> Sunscreens</label><br><br>
+
+  <button onclick="toggleSidebar()" style="margin-top: 20px; background-color: #f58c8c; border: none; color: white; padding: 8px 15px; border-radius: 5px;">Close</button>
 </div>
 
 </body>
